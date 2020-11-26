@@ -1,10 +1,10 @@
 class Track:
-  def __init__ (self, name, duration):
+  def __init__ (self, name, duration: int):
     self.name = name
     self.duration = duration
 
 def show(Track):
-  print(f'<{Track.name}–{Track.duration}>')
+  print(f'<{Track.name} – {Track.duration}>')
 
 class Album:
   def __init__ (self, name, artist):
@@ -13,15 +13,17 @@ class Album:
     self.tracklist = []
     self.duration = 0
 
-def add_track(Album, Track):
-  Album.tracklist.append(Track.name)
-  Album.duration += Track.duration
+def add_track(Album, track):
+  Album.tracklist.append(track)
+  Album.duration += track.duration
+
+def get_tracks(Album):
+  for track in Album.tracklist:
+    show(track)
 
 def get_duration(Album):
   print(Album.duration)
 
-def get_tracks(Album):
-  print(Album.tracklist)
 
 track1 = Track('Тяжелый митал', 6)
 track2 = Track('Очень тяжелый митал', 13)
