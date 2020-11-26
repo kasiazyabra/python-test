@@ -1,5 +1,6 @@
 class AllAnimals:
   totalweight = 0
+  maxweight = 0
 
 class MilkAnimals:
   def __init__ (self, type, name, voice, weight):
@@ -10,6 +11,8 @@ class MilkAnimals:
     self.feeded = 'Надо кормить!'
     self.milked = 'Надо подоить!'
     AllAnimals.totalweight += self.weight
+    if self.weight > AllAnimals.maxweight:
+      AllAnimals.maxweight = self.weight
 
 class WoolAnimals:
   def __init__ (self, type, name, voice, weight):
@@ -20,6 +23,8 @@ class WoolAnimals:
     self.feeded = 'Надо кормить!'
     self.cutted = 'Надо постричь!'
     AllAnimals.totalweight += self.weight
+    if self.weight > AllAnimals.maxweight:
+      AllAnimals.maxweight = self.weight
 
 class Birds:
   def __init__ (self, type, name, voice, weight):
@@ -30,6 +35,8 @@ class Birds:
     self.feeded = 'Надо кормить!'
     self.egged = 'Надо собрать яйца!'
     AllAnimals.totalweight += self.weight
+    if self.weight > AllAnimals.maxweight:
+      AllAnimals.maxweight = self.weight
 
 def feed(self):
     self.feeded = 'Накормили!'
@@ -55,4 +62,5 @@ goose2 = Birds('Гусь', 'Белый', 'Бугага', 4)
 duck1 = Birds('Утка', 'Кряква', 'Кваква', 6)
 
 print(AllAnimals.totalweight)
+print(AllAnimals.maxweight)
 
