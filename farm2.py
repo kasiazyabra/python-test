@@ -4,28 +4,35 @@ class Animals:
     self.name = name
     self.voice = voice
     self.weight = weight
-    self.feeded = 'Надо кормить!'
-    def feed(self):
-      self.feeded = 'Накормили!'
+    
 
 class Milk(Animals):
   def __init__(self, type, name, voice, weight):
     super().__init__(type, name, voice, weight)
+    self.feeded = 'Надо кормить!'
     self.milked = 'Надо подоить!'
+  def feed(self):
+    self.feeded = 'Накормили!'
   def milk(self):
     self.milked = 'Подоили!'
 
 class Wool(Animals):
   def __init__(self, type, name, voice, weight):
     super().__init__(type, name, voice, weight)
+    self.feeded = 'Надо кормить!'
     self.cutted = 'Надо постричь!'
+  def feed(self):
+    self.feeded = 'Накормили!'
   def cut(self):
     self.cutted = 'Постригли!'
 
 class Birds(Animals):
   def __init__(self, type, name, voice, weight):
     super().__init__(type, name, voice, weight)
+    self.feeded = 'Надо кормить!'
     self.egged = 'Надо собрать яйца!'
+  def feed(self):
+    self.feeded = 'Накормили!'
   def eggs(self):
     self.egged = 'Собрали яйца!'
 
@@ -46,4 +53,7 @@ print(duck1.voice)
 print(chicken2.egged)
 chicken2.eggs()
 print(chicken2.egged)
+print(sheep1.feeded)
+sheep1.feed()
+print(sheep1.feeded)
 
