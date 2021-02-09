@@ -1,7 +1,7 @@
-def read_json():
+def read_json(filename):
 
   import json
-  with open('newsafr.json') as f:
+  with open(filename) as f:
     data = json.load(f)
 
   words = []
@@ -11,11 +11,11 @@ def read_json():
 
   return words
 
-def read_xml():
+def read_xml(filename):
 
   import xml.etree.ElementTree as et
   parser = et.XMLParser(encoding='utf-8')
-  tree = et.parse('newsafr.xml', parser)
+  tree = et.parse(filename, parser)
   root = tree.getroot()
   news_xml = root.findall('channel/item')
 
@@ -26,29 +26,21 @@ def read_xml():
 
   return words
 
-def word_count(words):
+def word_count(words, wordlen, wordquant):
 
-  wlonguniq = []
   wcount = {}
 
   for word in words:
-    if word not in wlonguniq and len(word) > 6:
-      wlonguniq.append(word)
-
-  for word1 in wlonguniq:
-    count = 0
-    for word2 in words:
-      if word1 == word2:
-        count += 1
-    if count > 1:
-      wcount.setdefault(count, word1)
+    if len(word) > wordlen:
+        count = words.count(word)
+        wcount.setdefault(count, word)
 
   wcountkeys = sorted(list(wcount.keys()), reverse=True)
 
-  for i in range(10):
+  for i in range(wordquant):
     print(wcount[wcountkeys[i]])
 
-word_count(read_json())
+word_count(read_json('newsafr.json'), 6, 10)
 
-word_count(read_xml())
+word_count(read_xml('newsafr.xml'), 6, 10)
 
