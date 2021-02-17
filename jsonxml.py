@@ -1,3 +1,5 @@
+import operator
+
 def read_json(filename):
 
   import json
@@ -32,15 +34,18 @@ def word_count(words, wordlen, wordquant):
 
   for word in words:
     if len(word) > wordlen:
-        count = words.count(word)
-        wcount.setdefault(count, word)
-
-  wcountkeys = sorted(list(wcount.keys()), reverse=True)
+      if word not in wcount:
+        wcount.setdefault(word, 1)
+      else:
+        cnt = wcount[word] + 1
+        upd = {word:cnt}
+        wcount.update(upd)
+  
+  wsorted = sorted(wcount.items(), key=operator.itemgetter(1), reverse=True)
 
   for i in range(wordquant):
-    print(wcount[wcountkeys[i]])
+    print(wsorted[i])
 
 word_count(read_json('newsafr.json'), 6, 10)
-
 word_count(read_xml('newsafr.xml'), 6, 10)
 
